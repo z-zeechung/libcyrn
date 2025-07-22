@@ -1,0 +1,18 @@
+{
+    "name": "platform",
+    "bindings": [
+        {
+            "name": "arch",
+            "params": [],
+            "return": "string"
+        },
+        {
+            "name": "platform",
+            "params": [],
+            "return": "string"
+        },
+        {
+            
+        }
+    ]
+}
