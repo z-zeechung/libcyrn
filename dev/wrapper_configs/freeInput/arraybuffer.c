@@ -1,0 +1,1 @@
+napi_delete_reference(env, var$idx.ref);

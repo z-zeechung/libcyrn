@@ -4,6 +4,13 @@ To implement system-level interactions, Node.js leverages C++ interfaces bound t
 
 Rather than fully replicating Node's interfaces directly at the C level, our approach relies on higher-level JavaScript encapsulation. Herein, a *binding module* refers to any unit implementing one of `internalBinding`'s importable objects. These binding modules are injected into the global scope of corresponding higher-level shim modules as an `natives` object for further encapsulation, as detailed in [this documentation](./internal_require.md).
 
+## C Code Specifications
+- **Use POSIX-Compatible Interfaces.**
+- **C99 Standard.**
+- **Declare with `static inline`.**
+- **For Platform-Specific Bindings (i.e. OS Specific), Provide a Dummy Implementation in the Code Base's Top and Write Patches for Each Platform. See [Platform-Specific Implementation Selection](#platform-specific-implementation-selection)**
+- **Header files or `.inc` files should use macros starting with `CYRNEWIC_` to prevent duplicate inclusion. The meaning of CYRNEWIC is a word puzzle Easter egg.​**
+
 ## Source Organization
 Each binding module consists of the following files:  
 ```
@@ -41,3 +48,6 @@ gcc -o runtime main.c foobar.c -I /src /src/foobar/win32 /src/foobar
 Placing `/src/foobar/win32` before `/src/foobar` ensures the compiler prioritizes the platform-specific implementation, enabling targeted compilation per platform.  
 
 If implementing an interface for an unsupported platform, create a custom folder containing the requisite `.inc` files and override the include path. Contributors are encouraged to submit a pull request (PR) for such additions.
+
+## Platforms
+Use MinGW-32/64 `gcc` when compiling on Windows.

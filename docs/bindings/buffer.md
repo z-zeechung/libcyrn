@@ -5,8 +5,6 @@ Provides low-level operations for working with binary data buffers.
 ## Global Injections
 
 - `primordials`
-- `require` (internal require)
-- `internalBinding`
 - `natives` (`buffer` C bindings)
 - `esb` (engine specific bindings)
 
@@ -14,24 +12,25 @@ Provides low-level operations for working with binary data buffers.
 
 ```c
 int64_t kMaxLength(void);
-char* atob(const char* encoded);
-char* btoa(const char* binary);
+char* atob(const char* encoded, array_buffer errnum);
+char* btoa(const char* binary, array_buffer errnum);
 int64_t byteLengthUtf8(const char* str);
-int64_t copy(
-  array_buffer source, array_buffer target, 
-  int64_t targetStart, int64_t sourceStart, 
-  int64_t targetEnd, int64_t sourceEnd);
+// int64_t copy(
+//   array_buffer source, array_buffer target, 
+//   int64_t targetStart, int64_t sourceStart, 
+//   int64_t sourceEnd
+// );
 int64_t compareOffset(
   array_buffer source, array_buffer target, 
   int64_t targetStart, int64_t sourceStart, 
   int64_t targetEnd, int64_t sourceEnd);
-void fill(array_buffer buf, uint8_t value, int64_t offset, int64_t end);
+// void fill(array_buffer buf, uint8_t value, int64_t offset, int64_t end);
 int64_t indexOfBuffer(
-  array_buffer source, array_buffer target, int64_t offset);
+  array_buffer source, array_buffer target, int64_t offset, bool is_forward);
 int64_t indexOfNumber(
-  array_buffer buf, uint8_t value, int64_t offset);
-void swap16(array_buffer buf);
-void swap32(array_buffer buf);
+  array_buffer buf, uint8_t value, int64_t offset, bool is_forward);
+// void swap16(array_buffer buf);
+// void swap32(array_buffer buf);
 void swap64(array_buffer buf);
 bool isUtf8(array_buffer buf);
 bool isAscii(array_buffer buf);
@@ -50,19 +49,22 @@ int64_t hexWrite(
 int64_t ucs2Write(
   array_buffer buf, const char* str, 
   int64_t offset, int64_t length);
-int64_t latin1WriteStatic(
+// int64_t latin1WriteStatic(
+int64_t latin1Write(
   array_buffer buf, const char* str, 
   int64_t offset, int64_t length);
-int64_t utf8WriteStatic(
+// int64_t utf8WriteStatic(
+int64_t utf8Write(
   array_buffer buf, const char* str, 
   int64_t offset, int64_t length);
-void copyArrayBuffer(
-  array_buffer dest, int64_t dest_offset, 
-  array_buffer src, int64_t src_offset, int64_t bytes_to_copy);
+// void copyArrayBuffer(
+//   array_buffer dest, int64_t dest_offset, 
+//   array_buffer src, int64_t src_offset, int64_t bytes_to_copy);
 ```
 
 ## Engine Specific Bindings (ESB)
 
+- kMaxLength
 - kStringMaxLength
 
 
@@ -79,6 +81,7 @@ Defined in `/src/buffer`:
 ``` c
 int64_t kMaxLength(void);
 ```
+The ESB also has `kMaxLength` interface. The final value is the minimum of the two.
 
 ### `kStringMaxLength`
 Maximum string length when converting between buffers and strings.
@@ -107,7 +110,8 @@ function atob(encoded: string): string | number;
 **Implementation**
 Implemented in `/src/buffer`:
 ``` c
-char* atob(const char* encoded);
+// errnum is a single byte ArrayBuffer
+char* atob(const char* encoded, array_buffer errnum);
 ```
 
 ### `btoa()`
@@ -119,7 +123,8 @@ function btoa(binary: string): string;
 **Implementation**
 Implemented in `/src/buffer`:
 ``` c
-char* btoa(const char* binary);
+// errnum is a single byte ArrayBuffer
+char* btoa(const char* binary, array_buffer errnum);
 ```
 
 ## Buffer Operations
@@ -154,7 +159,7 @@ Implemented in `/src/buffer`:
 int64_t copy(
   array_buffer source, array_buffer target, 
   int64_t targetStart, int64_t sourceStart, 
-  int64_t targetEnd, int64_t sourceEnd
+  int64_t sourceEnd
 );
 ```
 
@@ -227,14 +232,15 @@ function indexOfBuffer(
   haystack: ArrayBufferView,
   needle: ArrayBufferView,
   offset?: number,
-  encoding?: BufferEncoding
+  encoding?: BufferEncoding,
+  isForward?: boolean
 ): number;
 ```
 **Implementation**
 Implemented in `/src/buffer`:
 ``` c
 int64_t indexOfBuffer(
-  array_buffer source, array_buffer target, int64_t offset
+  array_buffer source, array_buffer target, int64_t offset, bool is_forward
 ); 
 ```
 
@@ -245,13 +251,14 @@ Finds a byte value in a buffer.
 function indexOfNumber(
   buffer: ArrayBufferView,
   value: number,
-  offset?: number
+  offset?: number,
+  isForward?: boolean
 ): number;
 ```
 **Implementation**
 Implemented in `/src/buffer`:
 ``` c
-int64_t indexOfNumber(array_buffer buf, uint8_t value, int64_t offset);
+int64_t indexOfNumber(array_buffer buf, uint8_t value, int64_t offset, bool is_forward);
 ```
 
 ### `indexOfString()`

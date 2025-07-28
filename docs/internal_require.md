@@ -47,7 +47,7 @@ When CommonJS `require` imports a module, it encapsulates the module code within
 
 **Additional injections for `/lib/bindings` modules:**  
 - `Engine Specific Bindings (ESB)`: Contains all ESB functions. Binding shims use this to access engine-specific functionality.  
-- `natives`: The underlying C interface exports for the specific binding shim. **Note:** This is unique to each shim. The engine implementation must bundle bindings from `/src` and export them as separate modules to JavaScript. Corresponding relationships are documented in individual files under `[/doc/bindings](./bindings)`.  
+- `natives`: The underlying C interface exports for the specific binding shim. <del>**Note:** This is unique to each shim. The engine implementation must bundle bindings from `/src` and export them as separate modules to JavaScript. Corresponding relationships are documented in individual files under `[/doc/bindings](./bindings)`.</del>
 
 ## Implementing Internal Require  
 **Note:** This repository does not provide concrete `internal require` implementations. It only specifies implementation standards, to be executed by specific engine implementations.  

@@ -33,12 +33,13 @@ For the simplicity of the wrapper implementation of different engines, only a li
 |[int64](#int64)|`number`|`int64_t`||
 |[float64](#float64)|`number`|`double`||
 |[boolean](#boolean)|`boolean`|`bool`, `int`||
-|[string](#string)|`string`|`char*`||
-|[arraybuffer](#arraybuffer)|`ArrayBuffer`|`array_buffer`|`struct { int64_t size, char* data }`|
+|[string](#string)|`string`|`string`|`struct { int64_t length; char *data; };`|
+|[wstring](#wstring)|`string`|`wstring`|`struct { int64_t length; wchar_t *data; };`|
+|[arraybuffer](#arraybuffer)|`ArrayBuffer`|`array_buffer`|`struct { int64_t size, char* data, void* ref }`|
 |[int32array](#int32array-int64array-float64array)|`Array<number>`|`int32_array`|`struct { int count; int32_t* data }`|
 |[int64array](#int32array-int64array-float64array)|`Array<number>`|`int64_array`|`struct { int count; int64_t* data }`|
 |[float64array](#int32array-int64array-float64array)|`Array<number>`|`float64_array`|`struct { int count; double* data }`|
-|[stringarray](#stringarray)|`Array<string>`|`string_array`|`struct { int count; char** data }`|
+|[stringarray](#stringarray)|`Array<string>`|`string_array`|`struct { int count; string *data }`|
 |[void](#void)|`undefined`|`void`||
 
 ### `int32`
@@ -101,17 +102,28 @@ bool bar = false;   // or int bar = 0;
 **As a Return Value:** Pass by value.
 
 ### `string`
-A C-style string **encoded in UTF-8**. The value of the string could be `NULL`.
+A **UTF-8** string. The value of the string could be `NULL`.
 **JS Type:** `string`
 **C Definition:**
 ``` c
 char* str;
 ```
-**As an Input Param:** A `const char* str` C string pointer. This input string should never be modified or freed within the binding code.
-**As a Return Value:** A `char*` C string pointer pointing to a memory space allocated by `malloc`. This memory should not be freed within the binding code. The external wrapper code ought to free this allocated memory.
-**Value On Error:** `NULL`. <a id="on_error_value_example"></a>
+<del>**As an Input Param:** A `const char* str` C string pointer. This input string should never be modified or freed within the binding code.
+**As a Return Value:** A `char*` C string pointer pointing to a memory space allocated by `malloc`. This memory should not be freed within the binding code. The external wrapper code ought to free this allocated memory.</del>
+**Value On Error:** `{ length: 0, data: NULL }`. <a id="on_error_value_example"></a>
 
-### `arraybuffer`
+### `wstring`
+Wide `char` string encoded in **UTF-16**. The value of the string could be `NULL`.
+**JS Type:** `string`
+**C Definition:**
+``` c
+char* str;
+```
+<del>**As an Input Param:** A `const char* str` C string pointer. This input string should never be modified or freed within the binding code.
+**As a Return Value:** A `char*` C string pointer pointing to a memory space allocated by `malloc`. This memory should not be freed within the binding code. The external wrapper code ought to free this allocated memory.</del>
+**Value On Error:** `{ length: 0, data: NULL }`.
+
+### `arraybuffer` (TODO)
 A C `struct` representing JS `ArrayBuffer` object. The `data` field points to the raw memory block of the `ArrayBuffer`. `data` field could be `NULL`.
 **JS Type:** `ArrayBuffer`
 **C Definition:**
@@ -168,13 +180,13 @@ A C `struct` representing a string array. `data` field could be `NULL`, and elem
 
 typedef struct {
     int count;
-    char** data;
+    string *data;
 } stringarray;
 
 stringarray strarr;
 ```
-**As an Input Param:** Should not be used as an input param.
-**As a Return Value:** An `stringarray` struct passed by value. The `data` field points to an dynamic array allocated by `malloc`, and each element in this array might be `NULL` or a pointer to a string allocated by `malloc`. These allocated memory should not be freed within the binding code. The external wrapper code ought to free these allocated memory.
+<del>**As an Input Param:** Should not be used as an input param.
+**As a Return Value:** An `stringarray` struct passed by value. The `data` field points to an dynamic array allocated by `malloc`, and each element in this array might be `NULL` or a pointer to a string allocated by `malloc`. These allocated memory should not be freed within the binding code. The external wrapper code ought to free these allocated memory.</del>
 **Value On Error:** `{ count: 0, data: NULL }`.
 
 ### `void`
@@ -281,10 +293,7 @@ interface RequireSchemaBinding {
 ```
 
 ### C Code Specifications
-- **Use POSIX-Compatible Interfaces.**
-- **C99 Standard.**
-- **Declare with `static inline`.**
-- **For Platform-Specific Bindings (i.e. OS Specific), Provide a Dummy Implementation in the Code Base's Top and Write Patches for Each Platform. [*Compilation*](./compilation.md) Explains how Patches Work Based on `includePath` Mechanism.**
+**See [*Compilation*](./c_wrapper.md#c-code-specifications).**
 
 ---
 
