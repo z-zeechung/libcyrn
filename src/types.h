@@ -3,13 +3,12 @@
 #define CYRNEWIC_TYPES_H
 
 #include <stdint.h>
-#include <wchar.h>
 
-typedef struct { int64_t length; char *data; } string;
+typedef struct { size_t length; uint8_t *data; } string;
 
-typedef struct { int64_t length; wchar_t *data; } wstring;
+typedef struct { size_t length; uint16_t *data; } wstring;
 
-typedef struct { int64_t size; char* data; } array_buffer;
+typedef struct { size_t size; uint8_t* data; void* ref; } array_buffer;
 
 typedef struct { int count; int32_t* data; } int32_array;
 

@@ -12,11 +12,11 @@
 #include "buffer_kMaxLength.inc"
 #include "buffer_base64Slice.inc"
 #include "buffer_latin1Slice.inc"
-#include "buffer_hexSlice.inc"
+#include "buffer_hexSlice.inc"      // TODO: detect endianness for optimization
 #include "buffer_ucs2Slice.inc"
 #include "buffer_utf8Slice.inc"
 #include "buffer_base64Write.inc"
-#include "buffer_hexWrite.inc"
+#include "buffer_hexWrite.inc"      // TODO: detect endianness for optimization
 #include "buffer_ucs2Write.inc"
 #include "buffer_latin1Write.inc"
 #include "buffer_utf8Write.inc"

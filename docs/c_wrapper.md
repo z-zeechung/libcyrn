@@ -33,8 +33,8 @@ For the simplicity of the wrapper implementation of different engines, only a li
 |[int64](#int64)|`number`|`int64_t`||
 |[float64](#float64)|`number`|`double`||
 |[boolean](#boolean)|`boolean`|`bool`, `int`||
-|[string](#string)|`string`|`string`|`struct { int64_t length; char *data; };`|
-|[wstring](#wstring)|`string`|`wstring`|`struct { int64_t length; wchar_t *data; };`|
+|[string](#string)|`string`|`string`|`struct { int64_t length; unsigned char *data; };`|
+|[wstring](#wstring)|`string`|`wstring`|`struct { int64_t length; unsigned int16_t *data; };`|
 |[arraybuffer](#arraybuffer)|`ArrayBuffer`|`array_buffer`|`struct { int64_t size, char* data, void* ref }`|
 |[int32array](#int32array-int64array-float64array)|`Array<number>`|`int32_array`|`struct { int count; int32_t* data }`|
 |[int64array](#int32array-int64array-float64array)|`Array<number>`|`int64_array`|`struct { int count; int64_t* data }`|
@@ -137,8 +137,8 @@ A C `struct` representing JS `ArrayBuffer` object. The `data` field points to th
 array_buffer arrbfr;
 ```
 **As an Input Param:** An `array_buffer` struct passed by value. The `data` field might be `NULL` in some extreme cases, validate it for stability. `data` field might be processed outside the main thread, though this causes race conditions. Only do so when aligning with Node's behaviors.
-**As a Return Value:** An `array_buffer` struct passed by value. The `data` field points to a memory space allocated by `malloc`. This memory should not be freed within the binding code. The external wrapper code ought to free this allocated memory.
-**Value On Error:** `{ size: 0, data: NULL }`.
+**As a Return Value:** DO NOT RETURN THIS TYPE.<del>An `array_buffer` struct passed by value. The `data` field points to a memory space allocated by `malloc`. This memory should not be freed within the binding code. The external wrapper code ought to free this allocated memory.
+**Value On Error:** `{ size: 0, data: NULL }`.</del>
 
 ### `int32array` `int64array` `float64array`
 A C `struct` representing an `int32`/`int64`/`float64` array. `data` field could be `NULL`.
@@ -385,7 +385,7 @@ Or pass is to callback in async wrapper:
 ``` c
 // sync.c
 
-static JSValue $wrapperName(
+static JSValue $wrapperFunction(
     JSContext *ctx, 
     JSValueConst this_val, 
     int argc, JSValueConst *argv
@@ -394,7 +394,7 @@ static JSValue $wrapperName(
 
     errno = 0;
     $invoke
-    $freeInput
+    $freeInputs
 
     if(errno != 0) {
         $freeOutput
@@ -457,7 +457,7 @@ static void $wrapperName_worker(
     payload->errnum = errno;
 }
 
-static JSValue $wrapperName(
+static JSValue $wrapperFunction(
     JSContext *ctx,
     JSValueConst this_val,
     int argc, JSValueConst *argv
@@ -495,7 +495,7 @@ static JSValue $wrapperName(
 
 $wrapperDefinitions
 
-$wrappers   // function array of wrappers
+$wrapperFunctions   // function array of wrappers
 
 $wrapperNames   // array of wrapper names
 
@@ -508,7 +508,7 @@ static int bindings_module_init(JSContext *ctx, JSModuleDef *m) {
         bindings_funcs[i] = JS_CFUNC_DEF(
             wrapperNames[i], 
             wrapperParamCounts[i], 
-            wrappers[i]
+            wrapperFunctions[i]
         );
     }
     return JS_SetModuleExportList(ctx, m, bindings_funcs, $wrappersCount);
