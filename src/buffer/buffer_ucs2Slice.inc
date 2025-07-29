@@ -6,7 +6,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-static inline wstring ucs2Slice(
+static inline wstring buffer_ucs2Slice(
     array_buffer buf, int64_t start, int64_t end
 ){
 

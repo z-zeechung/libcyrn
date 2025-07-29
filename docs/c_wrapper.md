@@ -232,7 +232,7 @@ And then, we define the export information in `foobar.json`. This tells script h
 ``` json
 {
     "name": "foobar",
-    "include": "foobar.inc",
+    // "include": "foobar.inc",
     "bindings": [
         {
             "name": "func1",                // name in JS

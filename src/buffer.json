@@ -1,0 +1,131 @@
+{
+    "name": "buffer",
+    "bindings": [
+        {
+            "name": "isBase64String",
+            "function": "buffer_isBase64String",
+            "params": [ "string" ],
+            "return": "boolean"
+        },
+        {
+            "name": "isLatin1String",
+            "function": "buffer_isLatin1String",
+            "params": [ "wstring" ],
+            "return": "boolean"
+        },
+        {
+            "name": "byteLengthUtf8",
+            "function": "buffer_byteLengthUtf8",
+            "params": [ "string" ],
+            "return": "int64"
+        },
+        {
+            "name": "memcmp",
+            "function": "buffer_memcmp",
+            "params": [ "arraybuffer", "arraybuffer", "int64", "int64", "int64" ],
+            "return": "int32"
+        },
+        {
+            "name": "memmem",
+            "function": "buffer_memmem",
+            "params": [ "arraybuffer", "arraybuffer", "int64", "boolean" ],
+            "return": "int64"
+        },
+        {
+            "name": "swap16",
+            "function": "buffer_swap16",
+            "params": [ "arraybuffer" ],
+            "return": "void"
+        },
+        {
+            "name": "swap32",
+            "function": "buffer_swap32",
+            "params": [ "arraybuffer" ],
+            "return": "void"
+        },
+        {
+            "name": "swap64",
+            "function": "buffer_swap64",
+            "params": [ "arraybuffer" ],
+            "return": "void"
+        },
+        {
+            "name": "isUtf8",
+            "function": "buffer_isUtf8",
+            "params": [ "arraybuffer" ],
+            "return": "boolean"
+        },
+        {
+            "name": "isAscii",
+            "function": "buffer_isAscii",
+            "params": [ "arraybuffer" ],
+            "return": "boolean"
+        },
+        {
+            "name": "kMaxLength",
+            "function": "buffer_kMaxLength",
+            "params": [],
+            "return": "int64"
+        },
+        {
+            "name": "base64Slice",
+            "function": "buffer_base64Slice",
+            "params": [ "arraybuffer", "int64", "int64", "boolean" ],
+            "return": "string"
+        },
+        {
+            "name": "latin1Slice",
+            "function": "buffer_latin1Slice",
+            "params": [ "arraybuffer", "int64", "int64", "boolean" ],
+            "return": "wstring"
+        },
+        {
+            "name": "hexSlice",
+            "function": "buffer_hexSlice",
+            "params": [ "arraybuffer", "int64", "int64" ],
+            "return": "string"
+        },
+        {
+            "name": "ucs2Slice",
+            "function": "buffer_ucs2Slice",
+            "params": [ "arraybuffer", "int64", "int64" ],
+            "return": "wstring"
+        },
+        {
+            "name": "utf8Slice",
+            "function": "buffer_utf8Slice",
+            "params": [ "arraybuffer", "int64", "int64" ],
+            "return": "string"
+        },
+        {
+            "name": "base64Write",
+            "function": "buffer_base64Write",
+            "params": [ "arraybuffer", "string", "int64", "int64", "boolean" ],
+            "return": "int64"
+        },
+        {
+            "name": "hexWrite",
+            "function": "buffer_hexWrite",
+            "params": [ "arraybuffer", "string", "int64", "int64" ],
+            "return": "int64"
+        },
+        {
+            "name": "ucs2Write",
+            "function": "buffer_ucs2Write",
+            "params": [ "arraybuffer", "wstring", "int64", "int64" ],
+            "return": "int64"
+        },
+        {
+            "name": "latin1Write",
+            "function": "buffer_latin1Write",
+            "params": [ "arraybuffer", "wstring", "int64", "int64", "boolean" ],
+            "return": "int64"
+        },
+        {
+            "name": "utf8Write",
+            "function": "buffer_utf8Write",
+            "params": [ "arraybuffer", "string", "int64", "int64" ],
+            "return": "int64"
+        }
+    ]
+}

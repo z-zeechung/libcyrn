@@ -7,11 +7,13 @@
 #include "types.h"
 #include <errno.h>
 
-static void napi_cyrntest_throw_error(int errnum){
+static void napi_cyrntest_throw_error(napi_env env, int errnum){
     napi_value error;
     napi_create_string_utf8(env, "Internal Error.", NAPI_AUTO_LENGTH, &error);
     napi_throw(env, error);
 }
+
+#define napi_cyrntest_max(a, b) ((a) > (b) ? (a) : (b))
 
 
 $wrapperDefinitions
