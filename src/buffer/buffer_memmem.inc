@@ -16,7 +16,7 @@ static inline int64_t buffer_memmem(
             needle.data, needle.size
         );
         if(result){
-            return (int64_t)((char *)result - (haystack.data + offset));
+            return (int64_t)((uint8_t *)result - (haystack.data + offset));
         }
         return -1;
     }else{
@@ -25,7 +25,7 @@ static inline int64_t buffer_memmem(
             needle.data, needle.size
         );
         if(result){
-            return (int64_t)((char *)result - (haystack.data + offset));
+            return (int64_t)((uint8_t *)result - (haystack.data + offset));
         }
         return -1;
     }

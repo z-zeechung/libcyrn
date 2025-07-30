@@ -1,2 +1,1 @@
-napi_delete_reference(env, var$idx.ref);
-free(var$idx.ref);
+// napi_delete_reference(env, var$idx.ref); // TODO: fix this

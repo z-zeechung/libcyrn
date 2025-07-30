@@ -113,7 +113,7 @@ static inline int base64_encode_blockend(char* code_out, base64_encodestate* sta
 	case step_A:
 		break;
 	}
-	*codechar++ = '\n';
+	// *codechar++ = '\n';
 	
 	return codechar - code_out;
 }

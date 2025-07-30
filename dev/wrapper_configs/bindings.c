@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "types.h"
 #include <errno.h>
+#include <stdbool.h>
 
 static void napi_cyrntest_throw_error(napi_env env, int errnum){
     napi_value error;
@@ -26,26 +27,13 @@ $wrapperNames   // array of wrapper names
 /* $wrapperParamCounts */   // array of wrapper parameter counts
 
 napi_value Init$bindingName(napi_env env, napi_value exports) {
-    napi_property_descriptor * descs = (napi_property_descriptor *)malloc(sizeof(napi_property_descriptor) * $wrappersCount);
-    for (int i = 0; i < $wrappersCount; i++) {
-        napi_property_descriptor desc = {
-            wrapperNames[i],
-            NULL,
-            wrapperFunctions[i],
-            NULL,
-            NULL, 
-            NULL, 
-            napi_default,
-            NULL
-        };
-        descs[i] = desc;
+    for (int i = 0; i < 21; i++) {
+        napi_value fn;
+        napi_create_function(env, wrapperNames[i], NAPI_AUTO_LENGTH, wrapperFunctions[i], NULL, &fn);
+        napi_set_named_property(env, exports, wrapperNames[i], fn);
     }
-
-    napi_define_properties(env, exports, $wrappersCount, descs);
-
-    free(descs);
 
     return exports;
 }
 
-NAPI_MODULE(NODE_GYP_MODULE_NAME, Init$bindingName)
+NAPI_MODULE(NAPI_MODULE_$bindingName, Init$bindingName)
