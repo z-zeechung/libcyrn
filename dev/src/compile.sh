@@ -1,0 +1,1 @@
+g++ -shared -fpermissive buffer.c -o buffer.node -I../../node/src -I../../src -I../../src/buffer -L../../.vscode -lnode

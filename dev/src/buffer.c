@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include "types.h"
 #include <errno.h>
+#include <stdbool.h>
 
 static void napi_cyrntest_throw_error(napi_env env, int errnum){
     napi_value error;
@@ -126,12 +127,10 @@ napi_value wrapper_buffer_memcmp(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 array_buffer var1;
-var1.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[1], 1, var1.ref);
+// napi_create_reference(env, args[1], 1, var1.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[1], &var1.data, &var1.size);
 int64_t var2;
 napi_get_value_int64(env, args[2], &var2);
@@ -144,10 +143,8 @@ napi_get_value_int64(env, args[4], &var4);
     errno = 0;
     int32_t retval = buffer_memcmp(var0, var1, var2, var3, var4);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
-napi_delete_reference(env, var1.ref);
-free(var1.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
+// napi_delete_reference(env, var1.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -169,26 +166,22 @@ napi_value wrapper_buffer_memmem(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 array_buffer var1;
-var1.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[1], 1, var1.ref);
+// napi_create_reference(env, args[1], 1, var1.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[1], &var1.data, &var1.size);
 int64_t var2;
 napi_get_value_int64(env, args[2], &var2);
-int var3;
+bool var3;
 napi_get_value_bool(env, args[3], &var3);
 
 
     errno = 0;
     int64_t retval = buffer_memmem(var0, var1, var2, var3);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
-napi_delete_reference(env, var1.ref);
-free(var1.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
+// napi_delete_reference(env, var1.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -210,16 +203,14 @@ napi_value wrapper_buffer_swap16(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
 
     errno = 0;
     buffer_swap16(var0);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -241,16 +232,14 @@ napi_value wrapper_buffer_swap32(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
 
     errno = 0;
     buffer_swap32(var0);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -272,16 +261,14 @@ napi_value wrapper_buffer_swap64(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
 
     errno = 0;
     buffer_swap64(var0);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -303,16 +290,14 @@ napi_value wrapper_buffer_isUtf8(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
 
     errno = 0;
     int retval = buffer_isUtf8(var0);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -334,16 +319,14 @@ napi_value wrapper_buffer_isAscii(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
 
     errno = 0;
     int retval = buffer_isAscii(var0);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -390,22 +373,20 @@ napi_value wrapper_buffer_base64Slice(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 int64_t var1;
 napi_get_value_int64(env, args[1], &var1);
 int64_t var2;
 napi_get_value_int64(env, args[2], &var2);
-int var3;
+bool var3;
 napi_get_value_bool(env, args[3], &var3);
 
 
     errno = 0;
     string retval = buffer_base64Slice(var0, var1, var2, var3);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -430,22 +411,20 @@ napi_value wrapper_buffer_latin1Slice(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 int64_t var1;
 napi_get_value_int64(env, args[1], &var1);
 int64_t var2;
 napi_get_value_int64(env, args[2], &var2);
-int var3;
+bool var3;
 napi_get_value_bool(env, args[3], &var3);
 
 
     errno = 0;
     wstring retval = buffer_latin1Slice(var0, var1, var2, var3);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -470,8 +449,7 @@ napi_value wrapper_buffer_hexSlice(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 int64_t var1;
 napi_get_value_int64(env, args[1], &var1);
@@ -482,8 +460,7 @@ napi_get_value_int64(env, args[2], &var2);
     errno = 0;
     string retval = buffer_hexSlice(var0, var1, var2);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -508,8 +485,7 @@ napi_value wrapper_buffer_ucs2Slice(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 int64_t var1;
 napi_get_value_int64(env, args[1], &var1);
@@ -520,8 +496,7 @@ napi_get_value_int64(env, args[2], &var2);
     errno = 0;
     wstring retval = buffer_ucs2Slice(var0, var1, var2);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -546,8 +521,7 @@ napi_value wrapper_buffer_utf8Slice(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 int64_t var1;
 napi_get_value_int64(env, args[1], &var1);
@@ -558,8 +532,7 @@ napi_get_value_int64(env, args[2], &var2);
     errno = 0;
     string retval = buffer_utf8Slice(var0, var1, var2);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 
 
     if(errno != 0) {
@@ -584,8 +557,7 @@ napi_value wrapper_buffer_base64Write(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 string var1;
 napi_get_value_string_utf8(env, args[1], NULL, 0, &var1.length);
@@ -596,15 +568,14 @@ int64_t var2;
 napi_get_value_int64(env, args[2], &var2);
 int64_t var3;
 napi_get_value_int64(env, args[3], &var3);
-int var4;
+bool var4;
 napi_get_value_bool(env, args[4], &var4);
 
 
     errno = 0;
     int64_t retval = buffer_base64Write(var0, var1, var2, var3, var4);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 if(var1.data != NULL){
     free(var1.data);
 }
@@ -629,8 +600,7 @@ napi_value wrapper_buffer_hexWrite(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 string var1;
 napi_get_value_string_utf8(env, args[1], NULL, 0, &var1.length);
@@ -646,8 +616,7 @@ napi_get_value_int64(env, args[3], &var3);
     errno = 0;
     int64_t retval = buffer_hexWrite(var0, var1, var2, var3);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 if(var1.data != NULL){
     free(var1.data);
 }
@@ -672,8 +641,7 @@ napi_value wrapper_buffer_ucs2Write(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 wstring var1;
 napi_get_value_string_utf16(env, args[1], NULL, 0, &var1.length);
@@ -689,8 +657,7 @@ napi_get_value_int64(env, args[3], &var3);
     errno = 0;
     int64_t retval = buffer_ucs2Write(var0, var1, var2, var3);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 if(var1.data != NULL){
     free(var1.data);
 }
@@ -715,8 +682,7 @@ napi_value wrapper_buffer_latin1Write(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 wstring var1;
 napi_get_value_string_utf16(env, args[1], NULL, 0, &var1.length);
@@ -727,15 +693,14 @@ int64_t var2;
 napi_get_value_int64(env, args[2], &var2);
 int64_t var3;
 napi_get_value_int64(env, args[3], &var3);
-int var4;
+bool var4;
 napi_get_value_bool(env, args[4], &var4);
 
 
     errno = 0;
     int64_t retval = buffer_latin1Write(var0, var1, var2, var3, var4);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 if(var1.data != NULL){
     free(var1.data);
 }
@@ -760,8 +725,7 @@ napi_value wrapper_buffer_utf8Write(napi_env env, napi_callback_info info) {
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
 
     array_buffer var0;
-var0.ref = malloc(sizeof(napi_ref));
-napi_create_reference(env, args[0], 1, var0.ref);
+// napi_create_reference(env, args[0], 1, var0.ref);  // TODO: fix this
 napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 string var1;
 napi_get_value_string_utf8(env, args[1], NULL, 0, &var1.length);
@@ -777,8 +741,7 @@ napi_get_value_int64(env, args[3], &var3);
     errno = 0;
     int64_t retval = buffer_utf8Write(var0, var1, var2, var3);
 
-    napi_delete_reference(env, var0.ref);
-free(var0.ref);
+    // napi_delete_reference(env, var0.ref); // TODO: fix this
 if(var1.data != NULL){
     free(var1.data);
 }
@@ -876,26 +839,13 @@ const char* wrapperNames[] = {
  */   // array of wrapper parameter counts
 
 napi_value Initbuffer(napi_env env, napi_value exports) {
-    napi_property_descriptor * descs = (napi_property_descriptor *)malloc(sizeof(napi_property_descriptor) * 21);
     for (int i = 0; i < 21; i++) {
-        napi_property_descriptor desc = {
-            wrapperNames[i],
-            NULL,
-            wrapperFunctions[i],
-            NULL,
-            NULL, 
-            NULL, 
-            napi_default,
-            NULL
-        };
-        descs[i] = desc;
+        napi_value fn;
+        napi_create_function(env, wrapperNames[i], NAPI_AUTO_LENGTH, wrapperFunctions[i], NULL, &fn);
+        napi_set_named_property(env, exports, wrapperNames[i], fn);
     }
-
-    napi_define_properties(env, exports, 21, descs);
-
-    free(descs);
 
     return exports;
 }
 
-NAPI_MODULE(NODE_GYP_MODULE_NAME, Initbuffer)
+NAPI_MODULE(NAPI_MODULE_buffer, Initbuffer)
