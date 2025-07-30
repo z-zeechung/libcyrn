@@ -1,4 +1,7 @@
 napi_value $wrapperFunction(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/$bindingName/$bindingName_$wrapperName.inc $bindingName_$wrapperName]\n");
+
     size_t argc = $inputsCount;
     napi_value args[napi_cyrntest_max($inputsCount, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -18,5 +21,8 @@ napi_value $wrapperFunction(napi_env env, napi_callback_info info) {
 
     $collectOutput
     $freeOutput
+
+    printf("[ENDCALL] Returning Value...\n");
+
     $output
 }

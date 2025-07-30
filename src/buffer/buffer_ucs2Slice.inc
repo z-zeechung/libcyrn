@@ -1,7 +1,6 @@
 
 #include <stdint.h>
 #include "types.h"
-#include <wchar.h>
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -12,18 +11,18 @@ static inline wstring buffer_ucs2Slice(
 
     int64_t len = (end - start) / 2;
 
-    wchar_t *wstr = (wchar_t *)malloc(sizeof(wchar_t) * (len + 1));
+    uint16_t *wstr = (uint16_t *)malloc(sizeof(uint16_t) * (len + 1));
     if(wstr == NULL){
         errno = ENOMEM;
         wstring w = {0, NULL};
         return w;
     }
 
-    // if(sizeof(wchar_t) == 2){    // LE machine path
+    // if(sizeof(uint16_t) == 2){    // LE machine path
     //     memcpy(
     //         (unsigned char *)wstr,
     //         (unsigned char *)buf.data + start,
-    //         len * sizeof(wchar_t)
+    //         len * sizeof(uint16_t)
     //     );
     // }else{
         for(int64_t i = 0; i < len; i++){

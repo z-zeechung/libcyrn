@@ -89,9 +89,9 @@ module.exports = {
         const binaryData = atob('//79');
         const expected = '\xff\xbe\xfd';
         if (binaryData.length !== expected.length || 
-            binaryData.charCodeAt(0) !== 0xff ||
-            binaryData.charCodeAt(1) !== 0xbe ||
-            binaryData.charCodeAt(2) !== 0xfd) {
+            binaryData.charCodeAt(0) !== 255 ||
+            binaryData.charCodeAt(1) !== 254 ||
+            binaryData.charCodeAt(2) !== 253) {
             throw new Error('Binary data decoding failed. Output did not match expected byte sequence');
         }
     }

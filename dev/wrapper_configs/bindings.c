@@ -7,6 +7,7 @@
 #include "types.h"
 #include <errno.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 static void napi_cyrntest_throw_error(napi_env env, int errnum){
     napi_value error;

@@ -23,7 +23,7 @@ const {genCollectOutput} = require('./types/genCollectOutput.js')
 const {genOutput} = require('./types/genOutput.js')
 const {genFreeOutput} = require('./types/genFreeOutput.js')
 
-function handleParams(configPath, code, bindingInfo, wrapperFunctionNameGenerator){
+function handleParams(bindingName, configPath, code, bindingInfo, wrapperFunctionNameGenerator){
 
     const wrapperFunction = wrapperFunctionNameGenerator(bindingInfo.name);
     
@@ -53,6 +53,8 @@ function handleParams(configPath, code, bindingInfo, wrapperFunctionNameGenerato
 
     const output = genOutput(bindingInfo.return, configPath);
 
+    code = code.replaceAll("$bindingName", bindingName);
+    code = code.replaceAll("$wrapperName", bindingInfo.name);
     code = code.replaceAll("$wrapperFunction", wrapperFunction);
     code = code.replaceAll("$inputsCount", inputsCount);
     code = code.replaceAll("$inputs", inputs);
@@ -72,7 +74,7 @@ function genWrapperDefinitions(configPath, scheme, wrapperFunctionNameGenerator)
     )
     let defs = "";
     for(const binding of scheme.bindings){
-        defs += handleParams(configPath, template, binding, (name)=>wrapperFunctionNameGenerator(scheme.name, name));
+        defs += handleParams(scheme.name, configPath, template, binding, (name)=>wrapperFunctionNameGenerator(scheme.name, name));
         defs += "\n\n";
     }
     return defs;

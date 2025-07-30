@@ -12,6 +12,7 @@
 #include "types.h"
 #include <errno.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 static void napi_cyrntest_throw_error(napi_env env, int errnum){
     napi_value error;
@@ -23,6 +24,9 @@ static void napi_cyrntest_throw_error(napi_env env, int errnum){
 
 
 napi_value wrapper_buffer_isBase64String(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_isBase64String.inc buffer_isBase64String]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -50,12 +54,18 @@ napi_get_value_string_utf8(env, args[0], var0.data, var0.length + 1, &napi_new_s
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_boolean(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_isLatin1String(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_isLatin1String.inc buffer_isLatin1String]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -83,12 +93,18 @@ napi_get_value_string_utf16(env, args[0], var0.data, var0.length + 1, &napi_new_
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_boolean(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_byteLengthUtf8(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_byteLengthUtf8.inc buffer_byteLengthUtf8]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -116,12 +132,18 @@ napi_get_value_string_utf8(env, args[0], var0.data, var0.length + 1, &napi_new_s
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_memcmp(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_memcmp.inc buffer_memcmp]\n");
+
     size_t argc = 5;
     napi_value args[napi_cyrntest_max(5, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -155,12 +177,18 @@ napi_get_value_int64(env, args[4], &var4);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int32(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_memmem(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_memmem.inc buffer_memmem]\n");
+
     size_t argc = 4;
     napi_value args[napi_cyrntest_max(4, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -192,12 +220,18 @@ napi_get_value_bool(env, args[3], &var3);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_swap16(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_swap16.inc buffer_swap16]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -221,12 +255,18 @@ napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_undefined(env, &result);
 return result;
 }
 
 napi_value wrapper_buffer_swap32(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_swap32.inc buffer_swap32]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -250,12 +290,18 @@ napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_undefined(env, &result);
 return result;
 }
 
 napi_value wrapper_buffer_swap64(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_swap64.inc buffer_swap64]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -279,12 +325,18 @@ napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_undefined(env, &result);
 return result;
 }
 
 napi_value wrapper_buffer_isUtf8(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_isUtf8.inc buffer_isUtf8]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -308,12 +360,18 @@ napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_boolean(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_isAscii(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_isAscii.inc buffer_isAscii]\n");
+
     size_t argc = 1;
     napi_value args[napi_cyrntest_max(1, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -337,12 +395,18 @@ napi_get_arraybuffer_info(env, args[0], &var0.data, &var0.size);
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_get_boolean(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_kMaxLength(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_kMaxLength.inc buffer_kMaxLength]\n");
+
     size_t argc = 0;
     napi_value args[napi_cyrntest_max(0, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -362,12 +426,18 @@ napi_value wrapper_buffer_kMaxLength(napi_env env, napi_callback_info info) {
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_base64Slice(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_base64Slice.inc buffer_base64Slice]\n");
+
     size_t argc = 4;
     napi_value args[napi_cyrntest_max(4, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -402,10 +472,16 @@ napi_create_string_utf8(env, retval.data, retval.length, &result);
     if(retval.data != NULL){
     free(retval.data);
 }
+
+    printf("[ENDCALL] Returning Value...\n");
+
     return result;
 }
 
 napi_value wrapper_buffer_latin1Slice(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_latin1Slice.inc buffer_latin1Slice]\n");
+
     size_t argc = 4;
     napi_value args[napi_cyrntest_max(4, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -440,10 +516,16 @@ napi_create_string_utf16(env, retval.data, retval.length, &result);
     if(retval.data != NULL){
     free(retval.data);
 }
+
+    printf("[ENDCALL] Returning Value...\n");
+
     return result;
 }
 
 napi_value wrapper_buffer_hexSlice(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_hexSlice.inc buffer_hexSlice]\n");
+
     size_t argc = 3;
     napi_value args[napi_cyrntest_max(3, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -476,10 +558,16 @@ napi_create_string_utf8(env, retval.data, retval.length, &result);
     if(retval.data != NULL){
     free(retval.data);
 }
+
+    printf("[ENDCALL] Returning Value...\n");
+
     return result;
 }
 
 napi_value wrapper_buffer_ucs2Slice(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_ucs2Slice.inc buffer_ucs2Slice]\n");
+
     size_t argc = 3;
     napi_value args[napi_cyrntest_max(3, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -512,10 +600,16 @@ napi_create_string_utf16(env, retval.data, retval.length, &result);
     if(retval.data != NULL){
     free(retval.data);
 }
+
+    printf("[ENDCALL] Returning Value...\n");
+
     return result;
 }
 
 napi_value wrapper_buffer_utf8Slice(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_utf8Slice.inc buffer_utf8Slice]\n");
+
     size_t argc = 3;
     napi_value args[napi_cyrntest_max(3, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -548,10 +642,16 @@ napi_create_string_utf8(env, retval.data, retval.length, &result);
     if(retval.data != NULL){
     free(retval.data);
 }
+
+    printf("[ENDCALL] Returning Value...\n");
+
     return result;
 }
 
 napi_value wrapper_buffer_base64Write(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_base64Write.inc buffer_base64Write]\n");
+
     size_t argc = 5;
     napi_value args[napi_cyrntest_max(5, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -589,12 +689,18 @@ if(var1.data != NULL){
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_hexWrite(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_hexWrite.inc buffer_hexWrite]\n");
+
     size_t argc = 4;
     napi_value args[napi_cyrntest_max(4, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -630,12 +736,18 @@ if(var1.data != NULL){
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_ucs2Write(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_ucs2Write.inc buffer_ucs2Write]\n");
+
     size_t argc = 4;
     napi_value args[napi_cyrntest_max(4, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -671,12 +783,18 @@ if(var1.data != NULL){
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_latin1Write(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_latin1Write.inc buffer_latin1Write]\n");
+
     size_t argc = 5;
     napi_value args[napi_cyrntest_max(5, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -714,12 +832,18 @@ if(var1.data != NULL){
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;
 }
 
 napi_value wrapper_buffer_utf8Write(napi_env env, napi_callback_info info) {
+
+    printf("[CALL src/buffer/buffer_utf8Write.inc buffer_utf8Write]\n");
+
     size_t argc = 4;
     napi_value args[napi_cyrntest_max(4, 1)];
     napi_get_cb_info(env, info, &argc, args, NULL, NULL);
@@ -755,6 +879,9 @@ if(var1.data != NULL){
 
     
     
+
+    printf("[ENDCALL] Returning Value...\n");
+
     napi_value result;
 napi_create_int64(env, retval, &result);
 return result;

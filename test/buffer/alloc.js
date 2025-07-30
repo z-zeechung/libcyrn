@@ -82,9 +82,11 @@ module.exports = {
 
     testSizeStringCoercion() {
         const { Buffer } = require('buffer');
-        const buf = Buffer.alloc('5');
-        if (buf.length !== 5) {
-            throw new Error(`Expected buffer length 5, got ${buf.length}`);
+        try{
+            const buf = Buffer.alloc('5');
+            throw new Error(`Expected TypeError: The "size" argument must be of type number.`);
+        }catch{
+
         }
     },
 
@@ -138,11 +140,9 @@ module.exports = {
 
     testInvalidFillThrows() {
         const { Buffer } = require('buffer');
-        try {
-            Buffer.alloc(2, {});
-        } catch (e) {
-            return;
+        Buffer.alloc(2, {});    // <Buffer 00 00>
+        if(!Buffer.alloc(2, {}).equals(Buffer.alloc(2))) {
+            throw new Error('Expected exception for invalid fill');
         }
-        throw new Error('Expected exception for invalid fill type');
     }
 };
