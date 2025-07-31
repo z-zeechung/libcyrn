@@ -1,4 +1,4 @@
-# `platform` Internal Binding
+# <del>`platform` Internal Binding</del> (Rewriting)
 
 The combination of Node's [process](#process) and [internalBinding('os')](#internalbindingos). `process` is viewed as a special internal binding.
 

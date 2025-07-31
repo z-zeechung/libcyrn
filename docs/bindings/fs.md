@@ -1,4 +1,4 @@
-# `fs` Internal Binding
+# <del>`fs` Internal Binding</del> (Rewriting)
 
 Provides low-level file system operations for Node.js.
 
