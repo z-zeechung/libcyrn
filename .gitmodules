@@ -1,0 +1,13 @@
+[submodule "ada/ada"]
+	path = ada/ada
+	url = https://github.com/ada-url/ada.git
+[submodule "icu/libiconv"]
+	path = icu/libiconv
+	url = https://git.savannah.gnu.org/git/libiconv.git
+[submodule "node"]
+	path = node
+	url = https://github.com/nodejs/node.git
+	update = none
+[submodule "icu/icu"]
+	path = icu/icu
+	url = https://github.com/unicode-org/icu.git
